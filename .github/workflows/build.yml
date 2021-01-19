@@ -1,0 +1,19 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          ghc --version
+          runhaskell src/Main.hs
+          runhaskell -XCPP src/Main.hs
